@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f2f2f2;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .auth-box {
+            background: white;
+            width: 400px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #ff3300ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #00b3b3ff;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .register-link a {
+            color: #ff3300ff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="auth-box">
+
+    <h2>User Login</h2>
+
+    {% if login_error %}
+        <p class="error">{{ login_error }}</p>
+    {% endif %}
+
+    <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+
+        <label>Username</label>
+        <input type="text" name="username" placeholder="Enter username">
+
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter password">
+
+        <button type="submit">Login</button>
+
+        <div class="register-link">
+            Don’t have an account?
+            <a href="{% url 'register' %}">User Registration here</a>
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>
